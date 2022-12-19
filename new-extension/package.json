@@ -1,0 +1,79 @@
+{
+    "name": "new-extension",
+    "displayName": "new-extension",
+    "description": "版本3",
+    "version": "0.0.3",
+    "engines": {
+        "vscode": "^1.72.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:new-extension.helloWorld",
+        "onCommand:new-extension.functionComments",
+        "onStartupFinished"
+    ],
+    "main": "./dist/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "new-extension.helloWorld",
+                "title": "Hello World"
+            },
+            {
+                "command": "new-extension.function-0",
+                "title": "func:满足24点"
+            }
+        ],
+        "keybindings": [
+            {
+                "key": "ctrl+alt+/",
+                "command": "new-extension.functionComments"
+            },
+            {
+                "key": "ctrl+alt+l",
+                "command": "editor.action.insertSnippet",
+                "when": "editorTextFocus",
+                "args": {
+                    "snippet": "console.log(\"$CLIPBOARD:\", $CLIPBOARD)$0"
+                }
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "pnpm run package",
+        "compile": "webpack",
+        "watch": "webpack --watch",
+        "package": "webpack --mode production --devtool hidden-source-map",
+        "compile-tests": "tsc -p . --outDir out",
+        "watch-tests": "tsc -p . -w --outDir out",
+        "pretest": "pnpm run compile-tests && pnpm run compile && pnpm run lint",
+        "lint": "eslint src --ext ts",
+        "test": "node ./out/test/runTest.js"
+    },
+    "devDependencies": {
+        "@types/glob": "^8.0.0",
+        "@types/mocha": "^10.0.0",
+        "@types/node": "16.x",
+        "@types/vscode": "^1.72.0",
+        "@typescript-eslint/eslint-plugin": "^5.38.1",
+        "@typescript-eslint/parser": "^5.38.1",
+        "@vscode/test-electron": "^2.1.5",
+        "eslint": "^8.24.0",
+        "glob": "^8.0.3",
+        "mocha": "^10.0.0",
+        "ts-loader": "^9.4.1",
+        "typescript": "^4.8.4",
+        "webpack": "^5.74.0",
+        "webpack-cli": "^4.10.0"
+    },
+    "dependencies": {
+        "dayjs": "^1.11.5"
+    },
+    "license": "SEE LICENSE IN LICENSE",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/OBKoro1/koro1FileHeader"
+    }
+}
